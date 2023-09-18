@@ -17,13 +17,6 @@ public class Budget {
     }
     //    0 parameter Constructor
     public Budget(){}
-    //Initialization Block
-    {
-        this.income=0;
-        this.expenses=0;
-        this.savingsGoals=0;
-        this.currentAccountBalance=0;
-    }
 
     public double getIncome() {
         return income;
@@ -70,24 +63,50 @@ public class Budget {
     }
     public void input(){
         Scanner input = new Scanner(System.in);
+
+//        Monthly Income
         System.out.println("Enter Your Monthly Income: ");
         this.setIncome(input.nextDouble());
+
+//        Monthly Expenses
         System.out.println("Enter Your Monthly Expenses: ");
         this.setExpenses(input.nextDouble());
-        System.out.println("Enter Saving Target: ");
-        this.setSavingsGoals(input.nextDouble());
+        if(this.getIncome()<this.getExpenses()) {
+            System.out.println("Invalid, Expenses must be less than Income");
+            // Terminate the program with an exit status of 0
+            System.exit(0);
+        }
+
+//        Saving Goals
+        System.out.print("Do you have any savings goals? (yes/no): ");
+        String response = input.next();
+        if(response.equalsIgnoreCase("yes")) {
+            System.out.println("Enter Saving Target: ");
+            this.setSavingsGoals(input.nextDouble());
+            if (this.getIncome() < this.getSavingsGoals()) {
+                System.out.println("Invalid, Saving Target must be less than Income");
+                // Terminate the program with an exit status of 0
+                System.exit(0);
+            }
+        }
+
+//        Current Account Balance
         System.out.println("Enter Current Balance: ");
         this.setCurrentAccountBalance(input.nextDouble());
         input.close();
     }
     public void printBudget() {
-        System.out.println("Income:" +this.getIncome());
-        System.out.println("Expenses:" +this.getExpenses());
-        System.out.println("Savings goals:" +this.getSavingsGoals());
-        System.out.println("Current account balance:" +this.getCurrentAccountBalance());
-        System.out.println("Monthly surplus:" +this.calculateMonthlySurplus());
-        System.out.println("Monthly savings:" +this.calculateMonthlySavings());
-        System.out.println("Time to reach savings goal:" +this.calculateTimeToReachSavingsGoal());
+        System.out.println("Income: \u20B9" +this.getIncome());
+        System.out.println("Expenses: \u20B9" +this.getExpenses());
+        if(getSavingsGoals()!=0) {
+            System.out.println("Savings goals: \u20B9" + this.getSavingsGoals());
+        }
+        System.out.println("Current account balance: \u20B9" +this.getCurrentAccountBalance());
+        System.out.println("Monthly surplus: \u20B9" +this.calculateMonthlySurplus());
+        System.out.println("Monthly savings: \u20B9" +this.calculateMonthlySavings());
+        if(this.calculateTimeToReachSavingsGoal()!=0) {
+            System.out.println("Time to reach savings goal: " + this.calculateTimeToReachSavingsGoal());
+        }
     }
 
 
