@@ -9,7 +9,6 @@ public class Main {
         switch(choice) {
             case 1:
             Budget b = new Budget();
-            b.input();
             b.printBudget();
             break;
             case 2:
