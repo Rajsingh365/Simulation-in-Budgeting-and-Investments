@@ -3,8 +3,14 @@ import java.util.Scanner;
 
 public class Budget {
     private double income;
+    private double rent;
+    private double tax;
+    private double utilities;
+    private double luxuries;
+    private double buffer;
     private double expenses;
     private double savingsGoals;
+
     public Budget(){
         Scanner input = new Scanner(System.in);
 
@@ -13,8 +19,13 @@ public class Budget {
         this.setIncome(input.nextDouble());
 
 //        Monthly Expenses
-        System.out.println("Enter Your Monthly Expenses: ");
-        this.setExpenses(input.nextDouble());
+        System.out.println("Enter your following Expenses: \n Rent: \n Property Tax: \n Utilities: \n Luxuries: \n Buffer:");
+        this.setRent(input.nextDouble());
+        this.setTax(input.nextDouble());
+        this.setUtilities(input.nextDouble());
+        this.setLuxuries(input.nextDouble());
+        this.setBuffer(input.nextDouble());
+        this.setExpenses(this.getRent() + this.getTax() + this.getUtilities() + this.getLuxuries() + this.getBuffer());
         if(this.getIncome()<this.getExpenses()) {
             System.out.println("Invalid, Expenses must be less than Income");
             // Terminate the program with an exit status of 0
@@ -42,6 +53,45 @@ public class Budget {
 
     public void setIncome(double income) {
         this.income = income;
+    }
+
+    public double getRent() {
+        return rent;
+    }
+
+    public void setRent(double rent) {
+        this.rent = rent;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getUtilities() {
+        return utilities;
+    }
+
+    public void setUtilities(double utilities) {
+        this.utilities = utilities;
+    }
+
+    public double getLuxuries() {
+        return luxuries;
+    }
+
+    public void setLuxuries(double luxuries) {
+        this.luxuries = luxuries;
+    }
+    public double getBuffer() {
+        return buffer;
+    }
+
+    public void setBuffer(double buffer) {
+        this.buffer = buffer;
     }
 
     public double getExpenses() {
@@ -73,7 +123,7 @@ public class Budget {
     }
     public void printBudget() {
         System.out.println("Income: \u20B9" +this.getIncome());
-        System.out.println("Expenses: \u20B9" +this.getExpenses());
+        System.out.println("Total Expenses: \u20B9" +this.getExpenses());
         if(getSavingsGoals()!=0) {
             System.out.println("Savings goals: \u20B9" + this.getSavingsGoals());
         }
@@ -81,8 +131,8 @@ public class Budget {
         System.out.println("Monthly savings: \u20B9" +this.calculateMonthlySavings());
         if(this.calculateTimeToReachSavingsGoal()!=0) {
             System.out.println("Time to reach savings goal: " + this.calculateTimeToReachSavingsGoal());
-        }
-    }
+        }
+    }
 
 
 }
