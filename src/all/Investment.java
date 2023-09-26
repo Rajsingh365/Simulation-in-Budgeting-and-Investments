@@ -1,21 +1,31 @@
 package all;
 import java.util.Scanner;
-
 public class Investment {
-    private double initialInvestmentAmount;
-    private double expectedReturns;
+    private int years;
+    private double amount;
 
-    public double getInitialInvestmentAmount() {
-        return initialInvestmentAmount;
+    public void setYears(int years) {
+        this.years = years;
     }
-    public void setInitialInvestmentAmount(double initialInvestmentAmount) {
-        this.initialInvestmentAmount = initialInvestmentAmount;
+
+    public int getYears() {
+        return years;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+
+    }
+
     double stockRange = ((Math.random() * 80) - 40) / 100;
 
-    public double stockReturn(int years) {
-        // Generate a random number between -10% and 10%.
-        double stockResult = initialInvestmentAmount;
+    public double stockReturn() {
+        double stockResult = amount;
+
         for (int i = 0; i < years; i++) {
             stockResult += stockResult * stockRange;
         }
@@ -24,29 +34,16 @@ public class Investment {
 
     private double mutualRange = ((Math.random() * 40) - 20) / 100;
 
-    public double mutualReturn(int years) {
-        double mutualResult = initialInvestmentAmount;
+    public double mutualReturn() {
+        double mutualResult = amount;
+
         for (int i = 0; i < years; i++) {
             mutualResult += mutualResult * mutualRange;
         }
         return mutualResult;
+
     }
 
-    public double bondReturn(int years, double bondInterestRate) {
-        double bondResult = initialInvestmentAmount;
-        for (int i = 0; i < years; i++) {
-            bondResult += bondResult * bondInterestRate;
-        }
-        return bondResult;
-    }
-
-    public double savingsReturn(int years, double savingsInterestRate) {
-        double savingsResult = initialInvestmentAmount;
-        for (int i = 0; i < years; i++) {
-            savingsResult += savingsResult * savingsInterestRate;
-        }
-        return savingsResult;
-    }
 
     public void driver() {
         Scanner input = new Scanner(System.in);
@@ -54,77 +51,97 @@ public class Investment {
         System.out.println("1. Stocks\n2. Bonds\n3. Mutual Funds\n4. Savings Accounts");
         int investmentOption = input.nextInt();
         System.out.println("Enter Initial Investment amount: ");
-        this.setInitialInvestmentAmount(input.nextDouble());
-
+        this.setAmount(input.nextDouble());
         System.out.println("Enter the number of years to hold the investment: ");
-        int years = input.nextInt();
+        years = input.nextInt();
 
         switch (investmentOption) {
             case 1:
-                System.out.println("Investment Name: Stocks \n Initial Investment Amount: \u20B9" +
-                        getInitialInvestmentAmount() + "\n Random Return after " + years + " years: " + stockReturn(years) + " \n Risk level: HIGH");
+                System.out.println(" Investment Name: Stocks \n Initial Investment Amount: \u20B9" + getAmount() + "\n Random Return: " + stockReturn() + " \n Risklevel: HIGH \n ");
+                if (this.amount > this.stockReturn()) {
+                    System.out.println("loss : " + (this.amount - this.stockReturn()));
+                } else {
+                    System.out.println("profit : " + (this.stockReturn() - this.amount));
+                }
                 break;
 
             case 2:
-                System.out.println("Select your desired bond \n1. Birla Bond \n2. ICICI Bond \n3. HDFC Bond");
+                System.out.println("select your desired bond \n1. birla bond \n2. icici bond \n3. hdfc bond");
                 int bondOption = input.nextInt();
-                double bondInterestRate = 0.0;
+                double bondresults = 0;
                 switch (bondOption) {
                     case 1:
-                        bondInterestRate = 0.074;
-                        System.out.println("Bank: Birla Bond");
+                        System.out.println("Bank: birla bond");
+                        bondresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            bondresults += (bondresults * 0.078);
+                        }
                         break;
+
                     case 2:
-                        bondInterestRate = 0.070;
-                        System.out.println("Bank: ICICI Bond");
+                        System.out.println("Bank: icici bond");
+                        bondresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            bondresults += (bondresults * 0.070);
+                        }
                         break;
                     case 3:
-                        bondInterestRate = 0.078;
-                        System.out.println("Bank: HDFC Bond");
-                        break;
-                    default:
-                        System.out.println("Invalid bond option");
+                        System.out.println("Bank: hdfc bond");
+                        bondresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            bondresults += (bondresults * 0.074);
+                        }
                 }
-                System.out.println("Investment Name: Bonds \n Initial Investment Amount: \u20B9" +
-                        getInitialInvestmentAmount() + "\n Return after " + years + " years: " + bondReturn(years, bondInterestRate) + "\n Risk level: LOW");
+                System.out.println("Investment Name: Savings Accounts \n Initial Investment Amount: \u20B9" + getAmount() + "\n Return : " + bondresults + "\n Risklevel: LOW");
+
+                System.out.println("profit : " + (bondresults - amount));
                 break;
 
+
             case 3:
-                System.out.println(" Investment Name: Mutual Funds \n Initial Investment Amount: \u20B9" +
-                        getInitialInvestmentAmount() + "\n Return after " + years + " years: " + mutualReturn(years) + " \n Risk level: MEDIUM");
+                System.out.println(" Investment Name: mutual funds \n Initial Investment Amount: \u20B9" + getAmount() + "\n Return: " + mutualReturn() + " \n Risklevel: MEDIUM");
+                if (amount > mutualReturn()) {
+                    System.out.println("loss : " + (amount - mutualReturn()));
+                } else {
+                    System.out.println("profit : " + (mutualReturn() - amount));
+                }
                 break;
 
             case 4:
-                System.out.println("Select your desired bank \n1. Axis Bank \n2. Citi Bank \n3. Yes Bank");
+                System.out.println("select your desired bank \n1. Axis bank \n2. citi bank \n3. Yes bank");
                 int savingOption = input.nextInt();
-                double savingsInterestRate = 0.0;
+                double savingresults = 0;
                 switch (savingOption) {
                     case 1:
-                        savingsInterestRate = 0.033;
-                        System.out.println("Bank: Axis Bank");
+                        System.out.println("Bank: axis bank");
+                        savingresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            savingresults += (savingresults * 0.078);
+                        }
                         break;
                     case 2:
-                        savingsInterestRate = 0.025;
-                        System.out.println("Bank: Citi Bank");
+                        System.out.println("Bank: citi bank");
+                        savingresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            savingresults += (savingresults * 0.028);
+                        }
                         break;
                     case 3:
-                        savingsInterestRate = 0.054;
-                        System.out.println("Bank: Yes Bank");
-                        break;
-                    default:
-                        System.out.println("Invalid savings account option");
+                        System.out.println("Bank: yes bank");
+                        savingresults = amount;
+                        for (int i = 0; i < years; i++) {
+                            savingresults += (savingresults * 0.054);
+                        }
+
                 }
-                System.out.println("Investment Name: Savings Accounts \n Initial Investment Amount: \u20B9" +
-                        getInitialInvestmentAmount() + "\n Return after " + years + " years: " + savingsReturn(years, savingsInterestRate) + "\n Risk level: LOW");
+                System.out.println("Investment Name: Savings Accounts \n Initial Investment Amount: \u20B9" + getAmount() + "\n Return : " + savingresults + "\n Risklevel: LOW");
+
+                System.out.println("profit : " + (savingresults - amount));
+                input.close();
                 break;
 
             default:
                 System.out.println("Invalid choice");
         }
     }
-
-    public static void main(String[] args) {
-        Investment investment = new Investment();
-        investment.driver();
-    }
 }

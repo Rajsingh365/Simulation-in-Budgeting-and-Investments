@@ -1,4 +1,5 @@
 package all;
+
 import java.util.Scanner;
 
 public class Budget {
@@ -11,40 +12,39 @@ public class Budget {
     private double expenses;
     private double savingsGoals;
 
-    public Budget(){
+    public Budget() {
         Scanner input = new Scanner(System.in);
 
-//        Monthly Income
-        System.out.println("Enter Your Monthly Income: ");
-        this.setIncome(input.nextDouble());
 
-//        Monthly Expenses
+        System.out.println("Enter Your Monthly Income: ");
+        setIncome(input.nextDouble());
+
+
         System.out.println("Enter your following Expenses: \n Rent: \n Property Tax: \n Utilities: \n Luxuries: \n Buffer:");
-        this.setRent(input.nextDouble());
-        this.setTax(input.nextDouble());
-        this.setUtilities(input.nextDouble());
-        this.setLuxuries(input.nextDouble());
-        this.setBuffer(input.nextDouble());
-        this.setExpenses(this.getRent() + this.getTax() + this.getUtilities() + this.getLuxuries() + this.getBuffer());
-        if(this.getIncome()<this.getExpenses()) {
+        setRent(input.nextDouble());
+        setTax(input.nextDouble());
+        setUtilities(input.nextDouble());
+        setLuxuries(input.nextDouble());
+        setBuffer(input.nextDouble());
+        setExpenses(getRent() + getTax() + getUtilities() + getLuxuries() + getBuffer());
+        if (getIncome() < getExpenses()) {
             System.out.println("Invalid, Expenses must be less than Income");
-            // Terminate the program with an exit status of 0
+
             System.exit(0);
         }
 
-//        Saving Goals
+
         System.out.print("Do you have any savings goals? (yes/no): ");
         String response = input.next();
-        if(response.equalsIgnoreCase("yes")) {
+        if (response.equalsIgnoreCase("yes")) {
             System.out.println("Enter Saving Target: ");
-            this.setSavingsGoals(input.nextDouble());
-            if (this.getIncome() < this.getSavingsGoals()) {
+            setSavingsGoals(input.nextDouble());
+            if (getIncome() < getSavingsGoals()) {
                 System.out.println("Invalid, Saving Target must be less than Income");
-                // Terminate the program with an exit status of 0
                 System.exit(0);
             }
         }
-        input.close();
+
     }
 
     public double getIncome() {
@@ -86,6 +86,7 @@ public class Budget {
     public void setLuxuries(double luxuries) {
         this.luxuries = luxuries;
     }
+
     public double getBuffer() {
         return buffer;
     }
@@ -110,29 +111,21 @@ public class Budget {
         this.savingsGoals = savingsGoals;
     }
 
-    public double calculateMonthlySurplus() {
+    public double surplus() {
         return income - expenses;
     }
 
-    public double calculateMonthlySavings() {
-        return calculateMonthlySurplus() - savingsGoals;
+    public double savings() {
+        return surplus() - savingsGoals;
     }
 
-    public double calculateTimeToReachSavingsGoal() {
-        return savingsGoals / calculateMonthlySavings();
-    }
     public void printBudget() {
-        System.out.println("Income: \u20B9" +this.getIncome());
-        System.out.println("Total Expenses: \u20B9" +this.getExpenses());
-        if(getSavingsGoals()!=0) {
-            System.out.println("Savings goals: \u20B9" + this.getSavingsGoals());
+        System.out.println("Income: \u20B9" + getIncome());
+        System.out.println("Total Expenses: \u20B9" + getExpenses());
+        if (getSavingsGoals() != 0) {
+            System.out.println("Savings goals: \u20B9" + getSavingsGoals());
         }
-        System.out.println("Monthly surplus: \u20B9" +this.calculateMonthlySurplus());
-        System.out.println("Monthly savings: \u20B9" +this.calculateMonthlySavings());
-        if(this.calculateTimeToReachSavingsGoal()!=0) {
-            System.out.println("Time to reach savings goal: " + this.calculateTimeToReachSavingsGoal());
-        }
-    }
-
-
+        System.out.println("Monthly surplus: \u20B9" + surplus());
+        System.out.println("Monthly savings: \u20B9" + savings());
+    }
 }
