@@ -71,7 +71,7 @@ public class Investment {
                 double bondresults = 0;
                 switch (bondOption) {
                     case 1:
-                        System.out.println("Bank: birla bond");
+                        System.out.println("Bank: Birla Bond");
                         bondresults = amount;
                         for (int i = 0; i < years; i++) {
                             bondresults += (bondresults * 0.078);
@@ -79,14 +79,14 @@ public class Investment {
                         break;
 
                     case 2:
-                        System.out.println("Bank: icici bond");
+                        System.out.println("Bank: ICICI Bond");
                         bondresults = amount;
                         for (int i = 0; i < years; i++) {
                             bondresults += (bondresults * 0.070);
                         }
                         break;
                     case 3:
-                        System.out.println("Bank: hdfc bond");
+                        System.out.println("Bank: HDFC Bond");
                         bondresults = amount;
                         for (int i = 0; i < years; i++) {
                             bondresults += (bondresults * 0.074);
@@ -108,7 +108,7 @@ public class Investment {
                 break;
 
             case 4:
-                System.out.println("select your desired bank \n1. Axis bank \n2. citi bank \n3. Yes bank");
+                System.out.println("select your desired bank \n1. Axis bank \n2. Citi bank \n3. Yes bank");
                 int savingOption = input.nextInt();
                 double savingresults = 0;
                 switch (savingOption) {

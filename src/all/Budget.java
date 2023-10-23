@@ -118,7 +118,6 @@ public class Budget {
     public double savings() {
         return surplus() - savingsGoals;
     }
-
     public void printBudget() {
         System.out.println("Income: \u20B9" + getIncome());
         System.out.println("Total Expenses: \u20B9" + getExpenses());
