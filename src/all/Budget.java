@@ -1,177 +1,82 @@
-package all;
+ package all;
 
 import java.util.Scanner;
 
 public class Budget {
-    private double income;
-    private double rent;
-    private double tax;
-    private double utilities;
-    private double luxuries;
-    private double buffer;
-    private double expenses;
-    //private double savingsGoals;
+    private static double income;
+    private static double rent;
+    private static double tax;
+    private static double utilities;
+    private static double luxuries;
+    private static double buffer;
+    private static double expenses;
 
-    public Budget() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter Your Monthly Income: ");
-        setIncome(input.nextDouble());
-
-        System.out.print("Enter Rent: ");
-        setRent(input.nextDouble());
-
-        System.out.print("Enter Property Tax: ");
-        setTax(input.nextDouble());
-
-        System.out.print("Enter Utilities: ");
-        setUtilities(input.nextDouble());
-
-        System.out.print("Enter Luxuries: ");
-        setLuxuries(input.nextDouble());
-
-        System.out.print("Enter Buffer: ");
-        setBuffer(input.nextDouble());
-
-        setExpenses(getRent() + getTax() + getUtilities() + getLuxuries() + getBuffer());
-
-        if (getIncome() < getExpenses()) {
-            System.out.println("Invalid, Expenses must be less than Income");
-            System.exit(0);
-        }
-        /*System.out.print("Enter Your Monthly Income: ");
-        setIncome(input.nextDouble());
-
-
-        System.out.print("Enter your following Expenses: \nRent: \n Property Tax: \n Utilities: \n Luxuries: \n Buffer:");
-        setRent(input.nextDouble());
-        setTax(input.nextDouble());
-        setUtilities(input.nextDouble());
-        setLuxuries(input.nextDouble());
-        setBuffer(input.nextDouble());
-        setExpenses(getRent() + getTax() + getUtilities() + getLuxuries() + getBuffer());
-        if (getIncome() < getExpenses()) {
-            System.out.println("Invalid, Expenses must be less than Income");
-
-            System.exit(0);
-        }*/
-
-
-
-
-        /*System.out.print("Do you have any savings goals? (yes/no): ");
-        String response = input.next();
-        if (response.equalsIgnoreCase("yes")) {
-            System.out.println("Enter Saving Target: ");
-            setSavingsGoals(input.nextDouble());
-            if (getIncome() < getSavingsGoals()) {
-                System.out.println("Invalid, Saving Target must be less than Income");
-                System.exit(0);
-            }
-        }*/
-
+    public Budget(double rent, double tax, double utilities, double luxuries, double buffer) {
+        Budget.rent = rent;
+        Budget.tax = tax;
+        Budget.utilities = utilities;
+        Budget.luxuries = luxuries;
+        Budget.buffer = buffer;
+        setExpenses(rent + tax + utilities + luxuries + buffer);
     }
 
-    public double getIncome() {
+    public static double getIncome() {
         return income;
     }
 
-    public void setIncome(double income) {
-        this.income = income;
+    public static void setIncome(double income) {
+        Budget.income = income;
     }
 
-    public double getRent() {
+    public static double getRent() {
         return rent;
     }
 
-    public void setRent(double rent) {
-        this.rent = rent;
+    public static void setRent(double rent) {
+        Budget.rent = rent;
     }
 
-    public double getTax() {
+    public static double getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
-        this.tax = tax;
+    public static void setTax(double tax) {
+        Budget.tax = tax;
     }
 
-    public double getUtilities() {
+    public static double getUtilities() {
         return utilities;
     }
 
-    public void setUtilities(double utilities) {
-        this.utilities = utilities;
+    public static void setUtilities(double utilities) {
+        Budget.utilities = utilities;
     }
 
-    public double getLuxuries() {
+    public static double getLuxuries() {
         return luxuries;
     }
 
-    public void setLuxuries(double luxuries) {
-        this.luxuries = luxuries;
+    public static void setLuxuries(double luxuries) {
+        Budget.luxuries = luxuries;
     }
 
-    public double getBuffer() {
+    public static double getBuffer() {
         return buffer;
     }
 
-    public void setBuffer(double buffer) {
-        this.buffer = buffer;
+    public static void setBuffer(double buffer) {
+        Budget.buffer = buffer;
     }
 
-    public double getExpenses() {
+    public static double getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(double expenses) {
-        this.expenses = expenses;
+    public static void setExpenses(double expenses) {
+        Budget.expenses = expenses;
     }
 
-    /*public double getSavingsGoals() {
-        return savingsGoals;
-    }
-
-    public void setSavingsGoals(double savingsGoals) {
-        this.savingsGoals = savingsGoals;
-    }*/
-
-    public double surplus() {
+    public static double surplus() {
         return income - expenses;
-    }
-
-    /*public double savings() {
-        return surplus() - savingsGoals;
-    }*/
-    public void printBudget() {
-        System.out.println("Income: \u20B9" + getIncome());
-        System.out.println("Total Expenses: \u20B9" + getExpenses());
-        /*if (getSavingsGoals() != 0) {
-            System.out.println("Savings goals: \u20B9" + getSavingsGoals());
-        }*/
-        System.out.println("Monthly surplus: \u20B9" + surplus());
-        //System.out.println("Monthly savings: \u20B9" + savings());
-        System.out.println("Do you want to Invest your surplus in our Regular plan or Retirement plan?");
-
-        System.out.println("Enter Your Choice: ");
-        System.out.println("1. Regular Plan \n2.Retirement Plan");
-        Scanner input = new Scanner(System.in);
-        int choice=input.nextInt();
-        switch(choice) {
-            case 1:
-                RegularPlan n = new RegularPlan(surplus());
-                n.printRegularPlan();
-                break;
-
-
-            case 2:
-                RetirementPlan r = new RetirementPlan();
-                r.executeRetirementPlan();
-
-
-                break;
-
-        }
-
     }
 }
