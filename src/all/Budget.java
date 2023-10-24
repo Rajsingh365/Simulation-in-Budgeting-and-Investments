@@ -166,8 +166,9 @@ public class Budget {
 
             case 2:
                 RetirementPlan r = new RetirementPlan();
+                r.executeRetirementPlan();
 
-                r.printRetirementPlan();
+
                 break;
 
         }

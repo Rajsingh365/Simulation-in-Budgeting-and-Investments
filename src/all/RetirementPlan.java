@@ -262,8 +262,14 @@ public class RetirementPlan {
 
     public static void main(String[] args) {
         RetirementPlan retirementPlan = new RetirementPlan();
-        Scanner scanner = new Scanner(System.in);
+        retirementPlan.executeRetirementPlan();
 
+    }
+    public void executeRetirementPlan()
+    {
+        RetirementPlan retirementPlan = new RetirementPlan();
+        //retirementPlan.executeRetirementPlan();
+        Scanner scanner = new Scanner(System.in);
         // Get the user's age
         System.out.println("Enter your age: ");
         int age = scanner.nextInt();
@@ -339,24 +345,24 @@ public class RetirementPlan {
         retirementPlan.total = retirementPlan.amount + retirementPlan.stockRange + retirementPlan.mutualRange +
                 retirementPlan.goldRange + retirementPlan.bondRange + retirementPlan.savingRange;
 
-        retirementPlan.printRetirementPlan();
-        scanner.close();
-    }
-
-    public void printRetirementPlan() {
-        // Display the user's investment plan
         System.out.println("Your investment plan:");
-        System.out.println("Stocks: " + stockRange);
-        System.out.println("Mutual funds: " + mutualRange);
-        System.out.println("Gold: " + goldRange);
-        System.out.println("Bonds: " + bondRange);
-        System.out.println("Saving account: " + savingRange);
-        System.out.println("Total: " + total);
-        if (amount > total) {
-            System.out.println("Loss: " + (amount - total));
+        System.out.println("Stocks: " + retirementPlan.stockRange);
+        System.out.println("Mutual funds: " + retirementPlan.mutualRange);
+        System.out.println("Gold: " + retirementPlan.goldRange);
+        System.out.println("Bonds: " + retirementPlan.bondRange);
+        System.out.println("Saving account: " + retirementPlan.savingRange);
+        System.out.println("Total: " + retirementPlan.total);
+        if (retirementPlan.amount > retirementPlan.total) {
+            System.out.println("Loss: " + (retirementPlan.amount- retirementPlan.total));
         } else {
-            System.out.println("Profit: " + (total - amount));
+            System.out.println("Profit: " + (retirementPlan.total - retirementPlan.amount));
         }
-    }
+
+
+        scanner.close();
+}
+
+
+
 }
 
