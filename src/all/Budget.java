@@ -10,17 +10,40 @@ public class Budget {
     private double luxuries;
     private double buffer;
     private double expenses;
-    private double savingsGoals;
+    //private double savingsGoals;
 
     public Budget() {
         Scanner input = new Scanner(System.in);
 
+        System.out.print("Enter Your Monthly Income: ");
+        setIncome(input.nextDouble());
 
-        System.out.println("Enter Your Monthly Income: ");
+        System.out.print("Enter Rent: ");
+        setRent(input.nextDouble());
+
+        System.out.print("Enter Property Tax: ");
+        setTax(input.nextDouble());
+
+        System.out.print("Enter Utilities: ");
+        setUtilities(input.nextDouble());
+
+        System.out.print("Enter Luxuries: ");
+        setLuxuries(input.nextDouble());
+
+        System.out.print("Enter Buffer: ");
+        setBuffer(input.nextDouble());
+
+        setExpenses(getRent() + getTax() + getUtilities() + getLuxuries() + getBuffer());
+
+        if (getIncome() < getExpenses()) {
+            System.out.println("Invalid, Expenses must be less than Income");
+            System.exit(0);
+        }
+        /*System.out.print("Enter Your Monthly Income: ");
         setIncome(input.nextDouble());
 
 
-        System.out.println("Enter your following Expenses: \n Rent: \n Property Tax: \n Utilities: \n Luxuries: \n Buffer:");
+        System.out.print("Enter your following Expenses: \nRent: \n Property Tax: \n Utilities: \n Luxuries: \n Buffer:");
         setRent(input.nextDouble());
         setTax(input.nextDouble());
         setUtilities(input.nextDouble());
@@ -31,10 +54,12 @@ public class Budget {
             System.out.println("Invalid, Expenses must be less than Income");
 
             System.exit(0);
-        }
+        }*/
 
 
-        System.out.print("Do you have any savings goals? (yes/no): ");
+
+
+        /*System.out.print("Do you have any savings goals? (yes/no): ");
         String response = input.next();
         if (response.equalsIgnoreCase("yes")) {
             System.out.println("Enter Saving Target: ");
@@ -43,7 +68,7 @@ public class Budget {
                 System.out.println("Invalid, Saving Target must be less than Income");
                 System.exit(0);
             }
-        }
+        }*/
 
     }
 
@@ -103,28 +128,49 @@ public class Budget {
         this.expenses = expenses;
     }
 
-    public double getSavingsGoals() {
+    /*public double getSavingsGoals() {
         return savingsGoals;
     }
 
     public void setSavingsGoals(double savingsGoals) {
         this.savingsGoals = savingsGoals;
-    }
+    }*/
 
     public double surplus() {
         return income - expenses;
     }
 
-    public double savings() {
+    /*public double savings() {
         return surplus() - savingsGoals;
-    }
+    }*/
     public void printBudget() {
         System.out.println("Income: \u20B9" + getIncome());
         System.out.println("Total Expenses: \u20B9" + getExpenses());
-        if (getSavingsGoals() != 0) {
+        /*if (getSavingsGoals() != 0) {
             System.out.println("Savings goals: \u20B9" + getSavingsGoals());
-        }
+        }*/
         System.out.println("Monthly surplus: \u20B9" + surplus());
-        System.out.println("Monthly savings: \u20B9" + savings());
+        //System.out.println("Monthly savings: \u20B9" + savings());
+        System.out.println("Do you want to Invest your surplus in our Regular plan or Retirement plan?");
+
+        System.out.println("Enter Your Choice: ");
+        System.out.println("1. Regular Plan \n2.Retirement Plan");
+        Scanner input = new Scanner(System.in);
+        int choice=input.nextInt();
+        switch(choice) {
+            case 1:
+                RegularPlan n = new RegularPlan(surplus());
+                n.printRegularPlan();
+                break;
+
+
+            case 2:
+                RetirementPlan r = new RetirementPlan();
+
+                r.printRetirementPlan();
+                break;
+
+        }
+
     }
 }
