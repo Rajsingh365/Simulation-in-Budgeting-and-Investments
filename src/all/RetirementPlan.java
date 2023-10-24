@@ -45,6 +45,7 @@ public class RetirementPlan {
     }
 
     public RetirementPlan(double stockRangePercentage, double mutualRangePercentage, double goldRangePercentage, double bondRangePercentage, double savingRangePercentage) {
+        setAmount(Budget.surplus());
         double stocksPercentage =stockRangePercentage;
         RetirementPlan.stockRange = (((Math.random() * 80) - 40) / 100) * ((stocksPercentage / 100) * amount);
 

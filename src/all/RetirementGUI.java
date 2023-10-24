@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class RetirementGUI extends JFrame implements ActionListener {
     JPanel investmentTaker;
@@ -174,6 +175,7 @@ public class RetirementGUI extends JFrame implements ActionListener {
                         "Retirement plan for age group 61-80:\nStocks-  30-40%\nMutual funds- 40-50%\nGold-  5-10%\nBonds- 20-30%\nSaving account- 10-15%");
             }
         }
+        DecimalFormat decimalFormat = new DecimalFormat("#.###");
         if (e.getSource() == submitInvestmentInfo) {
             new RetirementPlan(Double.parseDouble(stockRangePercentageText.getText()),
                     Double.parseDouble(mutualRangePercentageText.getText()),
@@ -182,15 +184,25 @@ public class RetirementGUI extends JFrame implements ActionListener {
                     Double.parseDouble(savingRangePercentageText.getText()));
             if (RetirementPlan.getTotal() >= RetirementPlan.getAmount())
                 JOptionPane.showMessageDialog(null,
-                        "Your investment plan:\nStocks: " + RetirementPlan.getStockRange() + "\nMutual funds: "
-                                + RetirementPlan.getMutualRange() + "\nGold: " + RetirementPlan.getGoldRange() + "\nBonds: " + RetirementPlan.getBondRange()
-                                + "\nSaving account: " + RetirementPlan.getSavingRange() + "\nProfit: "
-                                + (RetirementPlan.getTotal() - RetirementPlan.getAmount()),
+                        "Your investment plan:\nStocks: " + decimalFormat
+                                .format(RetirementPlan.getStockRange()) + "\nMutual funds: "
+                                + decimalFormat
+                                .format(RetirementPlan.getMutualRange())
+                                + "\nGold: " + decimalFormat
+                                .format(RetirementPlan.getGoldRange())
+                                + "\nBonds: " + decimalFormat
+                                .format(RetirementPlan.getBondRange())
+                                + "\nSaving account: " + decimalFormat
+                                .format(RetirementPlan.getSavingRange())
+                                + "\nProfit: "
+                                + decimalFormat
+                                .format(RetirementPlan.getTotal() - RetirementPlan.getAmount()),
                         "INVESTMENT PLAN", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(null,
                         "Your investment plan:\nStocks: " + RetirementPlan.getStockRange() + "\nMutual funds: "
-                                + RetirementPlan.getMutualRange() + "\nGold: " + RetirementPlan.getGoldRange() + "\nBonds: " + RetirementPlan.getBondRange()
+                                + RetirementPlan.getMutualRange() + "\nGold: " + RetirementPlan.getGoldRange()
+                                + "\nBonds: " + RetirementPlan.getBondRange()
                                 + "\nSaving account: " + RetirementPlan.getSavingRange() + "\nLoss: "
                                 + (RetirementPlan.getAmount() - RetirementPlan.getTotal()),
                         "INVESTMENT PLAN", JOptionPane.INFORMATION_MESSAGE);

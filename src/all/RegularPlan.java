@@ -4,10 +4,14 @@ public class RegularPlan {
     static private double Equity;
     static private double Gold;
     static private double Bonds;
-    static private double surplus;
     static private int years;
 
-
+    public RegularPlan(double equity,double gold1,double bonds1){
+        RegularPlan.Equity=equity;
+        RegularPlan.Gold=gold1;
+        RegularPlan.Bonds=bonds1;
+        RegularPlan.years=1;
+    }
     static public void setEquity(double Equity1) {
         Equity=Equity1;
     }
@@ -32,31 +36,20 @@ public class RegularPlan {
     static public void setBonds(double Bonds1) {
         Bonds=Bonds1;
     }
-
-
-
-    //normal plan
-
-
-
     static public void setYears(int years1) {
-
         years = years1;
     }
-
     static public int getYears() {
         return years;
     }
     static public double emergency() {
-        return (30 * surplus / 100);
+        return (30 * Budget.surplus() / 100);
     }
     static public double save() {
-        return surplus - emergency();
+        return Budget.surplus() - emergency();
     }
-
     static double stockRange = ((Math.random() * 80) - 40) / 100;
     static double goldRange = ((Math.random() * 80) - 40) / 100;
-
     static public double stockReturn() {
         double stockResult = (Equity*save())/100;
 
@@ -65,8 +58,6 @@ public class RegularPlan {
         }
         return stockResult;
     }
-
-
     static public double BondReturn()
     {
         double bondresults = (Bonds * save()) / 100;
@@ -75,21 +66,11 @@ public class RegularPlan {
         }
         return bondresults;
     }
-
-
     static public double GoldReturn(){
         double goldresults=(Gold*save())/100;
         for (int i = 0; i < years; i++) {
             goldresults += (goldresults * goldRange);
         }
         return goldresults;
-
-    }
-
-    public void printRegularPlan() {
-        System.out.println("Emergency funds:\u20B9" + emergency());
-        System.out.println(" Investment Name: Equity \n Investment Amount: \u20B9" + (Equity * save()) / 100 + "\n Random Return: " + stockReturn() + " \n Risklevel: HIGH ");
-        System.out.println("Investment Name: Gold \n Investment Amount: \u20B9" + (Gold*save())/100 + "\n Return : " + GoldReturn() );
-        System.out.println("Investment Name: Bonds \n Investment Amount: \u20B9" + (Bonds*save())/100 + "\n Return : " + BondReturn() + "\n Risklevel: LOW");
     }
 }

@@ -140,7 +140,7 @@ public class RegularGUI extends JFrame implements ActionListener {
             }
         }
         if(e.getSource()==submitInvestmentInfo){
-
+                new RegularPlan(Double.parseDouble(equityRangePercentageText.getText()),Double.parseDouble(goldRangePercentageText.getText()),Double.parseDouble(bondRangePercentageText.getText()));
                 JOptionPane.showMessageDialog(null,"Your investment plan:\nEmergency Funds: "+RegularPlan.emergency()+"\nEquity: "+(RegularPlan.getEquity()*RegularPlan.save())/100+"\nGold: "+(RegularPlan.getGold()*RegularPlan.save())/100+"\nBonds:- "+(RegularPlan.getBonds()*RegularPlan.save())/100,"INVESTMENT PLAN",JOptionPane.INFORMATION_MESSAGE);
 
         }

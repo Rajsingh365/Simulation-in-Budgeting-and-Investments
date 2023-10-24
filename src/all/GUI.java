@@ -152,13 +152,6 @@ public class GUI extends JFrame implements ActionListener {
                     Double.parseDouble(utilitiesText.getText()),
                     Double.parseDouble(LuxuriesText.getText()),
                     Double.parseDouble(bufferText.getText()));
-            // b.setIncome(Double.parseDouble(incomeText.getText()));
-            // b.setLuxuries(Double.parseDouble(LuxuriesText.getText()));
-            // b.setTax(Double.parseDouble(taxText.getText()));
-            // b.setBuffer(Double.parseDouble(bufferText.getText()));
-            // b.setUtilities(Double.parseDouble(utilitiesText.getText()));
-            // b.setRent(Double.parseDouble(rentText.getText()));
-
             int store = JOptionPane.showConfirmDialog(null,
                     "Do you want to Invest your surplus in our Regular plan or Retirement plan?", "user",
                     JOptionPane.YES_NO_OPTION);
@@ -167,7 +160,6 @@ public class GUI extends JFrame implements ActionListener {
                 regularPlans.setVisible(true);
                 submitInvestmentCategory.setVisible(true);
             }
-
         }
         if (e.getSource() == submitInvestmentCategory) {
             if (regularPlans.isSelected()) {
