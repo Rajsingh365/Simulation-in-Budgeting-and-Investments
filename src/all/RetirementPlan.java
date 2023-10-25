@@ -1,6 +1,4 @@
 package all;
-import java.util.Scanner;
-
 public class RetirementPlan {
     static private double stockRange;
     static private double mutualRange;
@@ -9,7 +7,6 @@ public class RetirementPlan {
     static private double savingRange;
     static private double total;
     static private double amount;
-
 
     static public double getTotal() {
         return total;
@@ -65,8 +62,8 @@ public class RetirementPlan {
         double savingAccountsPercentage = savingRangePercentage;
         RetirementPlan.savingRange = 0.04 * ((savingAccountsPercentage / 100) * amount);
 
-        // Calculate total profit
         RetirementPlan.setTotal( stockRange + mutualRange + goldRange + bondRange + savingRange);
         RetirementPlan.setAmount(Budget.surplus());
     }
+
 }

@@ -130,19 +130,18 @@ public class RegularGUI extends JFrame implements ActionListener {
             goldRangePercentageText.setEditable(true);
             bondRangePercentageText.setEditable(true);
             if(age18_35.isSelected()){
-                JOptionPane.showMessageDialog(null,"Retirement plan for age group 18-35:\nEquity-  50-60%\nGold-  20-25%\nBonds- 10-15%","Tips",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Regular plan for age group 18-35:\nEquity-  50-60%\nGold-  20-25%\nBonds- 10-15%","Tips",JOptionPane.INFORMATION_MESSAGE);
             }
             else if(age36_60.isSelected()){
-                JOptionPane.showMessageDialog(null,"Retirement plan for age group 36-60:\nEquity-  40-50%\nGold-  40-50%\nBonds- 10-20%");
+                JOptionPane.showMessageDialog(null,"Regular plan for age group 36-60:\nEquity-  40-50%\nGold-  40-50%\nBonds- 10-20%");
             }
             else {
-                JOptionPane.showMessageDialog(null,"Retirement plan for age group 61-80:\nEquity-  30-40%\nGold-  50-55%\nBonds- 5-10%");
+                JOptionPane.showMessageDialog(null,"Regular plan for age group 61-80:\nEquity-  30-40%\nGold-  50-55%\nBonds- 5-10%");
             }
         }
         if(e.getSource()==submitInvestmentInfo){
                 new RegularPlan(Double.parseDouble(equityRangePercentageText.getText()),Double.parseDouble(goldRangePercentageText.getText()),Double.parseDouble(bondRangePercentageText.getText()));
-                JOptionPane.showMessageDialog(null,"Your investment plan:\nEmergency Funds: "+RegularPlan.emergency()+"\nEquity: "+(RegularPlan.getEquity()*RegularPlan.save())/100+"\nGold: "+(RegularPlan.getGold()*RegularPlan.save())/100+"\nBonds:- "+(RegularPlan.getBonds()*RegularPlan.save())/100,"INVESTMENT PLAN",JOptionPane.INFORMATION_MESSAGE);
-
+                JOptionPane.showMessageDialog(null,"Your investment plan:\nEmergency Funds: "+RegularPlan.emergency()*(-1)+"\nEquity: "+(RegularPlan.getEquity()*RegularPlan.save())*(-1)/100+"\nGold: "+(RegularPlan.getGold()*RegularPlan.save())*(-1)/100+"\nBonds:- "+(RegularPlan.getBonds()*RegularPlan.save())*(-1)/100,"INVESTMENT PLAN",JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

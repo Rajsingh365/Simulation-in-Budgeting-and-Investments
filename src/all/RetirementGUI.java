@@ -187,23 +187,23 @@ public class RetirementGUI extends JFrame implements ActionListener {
                         "Your investment plan:\nStocks: " + decimalFormat
                                 .format(RetirementPlan.getStockRange()) + "\nMutual funds: "
                                 + decimalFormat
-                                .format(RetirementPlan.getMutualRange())
+                                .format(RetirementPlan.getMutualRange()*(-1))
                                 + "\nGold: " + decimalFormat
-                                .format(RetirementPlan.getGoldRange())
+                                .format(RetirementPlan.getGoldRange()*(-1))
                                 + "\nBonds: " + decimalFormat
-                                .format(RetirementPlan.getBondRange())
+                                .format(RetirementPlan.getBondRange()*(-1))
                                 + "\nSaving account: " + decimalFormat
-                                .format(RetirementPlan.getSavingRange())
+                                .format(RetirementPlan.getSavingRange()*(-1))
                                 + "\nProfit: "
                                 + decimalFormat
                                 .format(RetirementPlan.getTotal() - RetirementPlan.getAmount()),
                         "INVESTMENT PLAN", JOptionPane.INFORMATION_MESSAGE);
             else
                 JOptionPane.showMessageDialog(null,
-                        "Your investment plan:\nStocks: " + RetirementPlan.getStockRange() + "\nMutual funds: "
-                                + RetirementPlan.getMutualRange() + "\nGold: " + RetirementPlan.getGoldRange()
-                                + "\nBonds: " + RetirementPlan.getBondRange()
-                                + "\nSaving account: " + RetirementPlan.getSavingRange() + "\nLoss: "
+                        "Your investment plan:\nStocks: " + RetirementPlan.getStockRange()*(-1) + "\nMutual funds: "
+                                + RetirementPlan.getMutualRange()*(-1) + "\nGold: " + RetirementPlan.getGoldRange()*(-1)
+                                + "\nBonds: " + RetirementPlan.getBondRange()*(-1)
+                                + "\nSaving account: " + RetirementPlan.getSavingRange()*(-1) + "\nLoss: "
                                 + (RetirementPlan.getAmount() - RetirementPlan.getTotal()),
                         "INVESTMENT PLAN", JOptionPane.INFORMATION_MESSAGE);
         }

@@ -88,9 +88,6 @@ public class GUI extends JFrame implements ActionListener {
         submitIncomeInfo.setFocusable(false);
         submitIncomeInfo.setFont(new Font("Futura", Font.BOLD, 25));
 
-        // incomeDisplay.setBackground(new Color(0x123456));
-        // incomeDisplay.setVisible(false);
-
         ButtonGroup plans = new ButtonGroup();
         regularPlans = new JRadioButton("Regular Plan");
         retirementPlans = new JRadioButton("Retirement Plan");
@@ -115,7 +112,6 @@ public class GUI extends JFrame implements ActionListener {
 
         JPanel regularPanel = new JPanel();
 
-        // Adding all Compenents
         this.add(header, BorderLayout.NORTH);
         header.add(appName, BorderLayout.CENTER);
 
@@ -135,11 +131,11 @@ public class GUI extends JFrame implements ActionListener {
         incomeTaker.add(taxText);
         incomeTaker.add(bufferText);
         incomeTaker.add(submitIncomeInfo);
-        // this.add(incomeDisplay, BorderLayout.SOUTH);
+
         incomeTaker.add(regularPlans);
         incomeTaker.add(retirementPlans);
         incomeTaker.add(submitInvestmentCategory);
-        // Ensure the frame is visible
+
         this.setVisible(true);
     }
 
@@ -164,10 +160,10 @@ public class GUI extends JFrame implements ActionListener {
         if (e.getSource() == submitInvestmentCategory) {
             if (regularPlans.isSelected()) {
                 this.dispose();
-                RegularGUI regularObj = new RegularGUI();
+                 new RegularGUI();
             } else if (retirementPlans.isSelected()) {
                 this.dispose();
-                RetirementGUI retirementObj = new RetirementGUI();
+                 new RetirementGUI();
             }
         }
 
