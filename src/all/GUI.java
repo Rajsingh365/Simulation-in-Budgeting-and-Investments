@@ -1,4 +1,4 @@
- package all;
+package all;
 
 import java.awt.*;
 import javax.swing.*;
@@ -148,9 +148,32 @@ public class GUI extends JFrame implements ActionListener {
                     Double.parseDouble(utilitiesText.getText()),
                     Double.parseDouble(LuxuriesText.getText()),
                     Double.parseDouble(bufferText.getText()));
-            int store = JOptionPane.showConfirmDialog(null,
+            double income = Double.parseDouble(incomeText.getText());
+
+            double rent = Double.parseDouble(rentText.getText());
+            double tax = Double.parseDouble(taxText.getText());
+            double utilities = Double.parseDouble(utilitiesText.getText());
+            double luxuries = Double.parseDouble(LuxuriesText.getText());
+            double buffer = Double.parseDouble(bufferText.getText());
+
+            // Initialize Budget class variables
+            Budget.setRent(rent);
+            Budget.setTax(tax);
+            Budget.setUtilities(utilities);
+            Budget.setLuxuries(luxuries);
+            Budget.setBuffer(buffer);
+
+            // double totalIncome = rent + tax + utilities + luxuries + buffer;
+            double incomeTax = IncomeTaxCalculator.calculateIncomeTax(income);
+            double surplus = income - (rent + tax + utilities + luxuries + buffer + incomeTax);
+            /*int store = JOptionPane.showConfirmDialog(null,
                     "Do you want to Invest your surplus in our Regular plan or Retirement plan?", "user",
-                    JOptionPane.YES_NO_OPTION);
+                    JOptionPane.YES_NO_OPTION);*/
+            int store = JOptionPane.showConfirmDialog(null,
+                    "Your surplus after income tax: $" + surplus +
+                            "\n income tax :" +incomeTax+
+                            "\nDo you want to Invest your surplus in our Regular plan or Retirement plan?",
+                    "Investment Options", JOptionPane.YES_NO_OPTION);
             if (store == 0) {
                 retirementPlans.setVisible(true);
                 regularPlans.setVisible(true);
@@ -160,10 +183,10 @@ public class GUI extends JFrame implements ActionListener {
         if (e.getSource() == submitInvestmentCategory) {
             if (regularPlans.isSelected()) {
                 this.dispose();
-                 new RegularGUI();
+                new RegularGUI();
             } else if (retirementPlans.isSelected()) {
                 this.dispose();
-                 new RetirementGUI();
+                new RetirementGUI();
             }
         }
 

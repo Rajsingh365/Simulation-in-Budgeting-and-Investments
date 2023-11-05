@@ -146,7 +146,7 @@ public class RetirementGUI extends JFrame implements ActionListener {
         investmentTaker.add(bondRangePercentageText);
         investmentTaker.add(savingRangePercentageText);
         investmentTaker.add(submitInvestmentInfo);
-        // this.add(outputLabel, BorderLayout.CENTER);
+//         this.add(outputLabel, BorderLayout.CENTER);
 
         this.setVisible(true);
     }
